@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('^$', hello),
     url(r'^login/', include('login.urls')),
-    url(r'polls', include('polls.urls')),
+    url(r'polls/', include('polls.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
