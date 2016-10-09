@@ -1,6 +1,6 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect
-from polls.models import User
+from login.models import User
 from django import forms
 
 # Create your views here.
