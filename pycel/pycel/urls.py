@@ -7,6 +7,6 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url('/', hello),
+    url('^$', hello),
     url(r'^login/', include('polls.urls')),
 ]

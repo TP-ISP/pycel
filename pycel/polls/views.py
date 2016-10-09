@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response
-from djangp.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from polls.models import User
 from django import forms
 
