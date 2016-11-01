@@ -9,8 +9,8 @@ admin.autodiscover()
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('^$', hello),
-    url(r'polls/', include('polls.urls')),
-    # url(r'ispproject/', include('ispproject.urls')),
+    url(r'exam/', include('exam.urls')),
+    url(r'ispproject/', include('ispproject.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

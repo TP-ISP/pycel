@@ -24,7 +24,7 @@ from django.utils import timezone
 #         return self.choice_text
 
 class Project(models.Model):
-    serial_number = models.IntegerField(default=0, max_length=30)
+    serial_number = models.IntegerField(default=0)
     class_level = models.IntegerField(default=0)
     priority_level = models.IntegerField(default=0)
     status_level = models.IntegerField(default=0)
@@ -35,3 +35,6 @@ class Project(models.Model):
 
     def __str__(self):
         return self.project_text
+
+    def was_published_recently(self):
+         return self.change_date >= timezone.now() - datetime.timedelta(days=1)
