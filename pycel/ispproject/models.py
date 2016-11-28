@@ -24,17 +24,40 @@ from django.utils import timezone
 #         return self.choice_text
 
 class Project(models.Model):
+    LEADER = (
+        ('W', 'WenZhenYu'),
+        ('Z', 'ZhongLianBo'),
+    )
+    PRODUCT_TYPE = (
+        ('A', 'ADSL'),
+        ('B', 'BB'),
+    )
+    STATUS_LEVEL = (
+        ('N', 'Normal'),
+        ('U', 'ABNORMAL'),
+    )
+    PRODUCT_MANAGER = (
+        ('C', 'Conner'),
+        ('G', 'Garvin'),
+        ('H', 'Harvey'),
+        ('W', 'Will'),
+    )
     serial_number = models.IntegerField(default=0)
     class_level = models.IntegerField(default=0)
     priority_level = models.IntegerField(default=0)
-    status_level = models.IntegerField(default=0)
+    status_level = models.CharField(max_length=1, choices=STATUS_LEVEL, default='N')
     stage_level = models.IntegerField(default=0)
-    product_version = models.CharField(max_length=30)
-    product_type = models.CharField(max_length=30)
+    product_version = models.CharField(max_length=30, default="1.0.0")
+    product_type = models.CharField(max_length=1, choices=PRODUCT_TYPE, default='A')
+    leader_name = models.CharField(max_length=1, choices=LEADER, default='W')
     change_date = models.DateTimeField('change date')
+    area_name = models.CharField(max_length=30, default="")
+    guest_name = models.CharField(max_length=30, default="")
+    rd_name = models.CharField(max_length=30, default="")
+    pm_name = models.CharField(max_length=1, choices=PRODUCT_MANAGER, default='C')
 
     def __str__(self):
-        return self.project_text
+        return self.product_version
 
     def was_published_recently(self):
          return self.change_date >= timezone.now() - datetime.timedelta(days=1)
