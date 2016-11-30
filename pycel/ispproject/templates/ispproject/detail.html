@@ -13,13 +13,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">ISP Project</a>
+      <a class="navbar-brand" href="/ispproject">ISP Project</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="/select">项目选择器</a></li>
+        <li><a href="/ispproject/select">项目选择器</a></li>
         <li><a href="/">回到首页</a></li>
       </ul>
       <form class="navbar-form navbar-left" role="search">
@@ -38,6 +38,13 @@
 
 <div class="container">
     <div class="row">
+      <ul class="list-group">
+  <li class="list-group-item">Serial Number:  {{object.serial_number}}</li>
+  <li class="list-group-item">Class Level:   {{object.class_level}}</li>
+  <li class="list-group-item">Status Level:   {{object.status_level}}</li>
+  <li class="list-group-item">Stage Level:  {{object.stage_level}}</li>
+  <li class="list-group-item">Product Version: {{object.product_version}}</li>
+</ul>
     </div>
 </div>
 

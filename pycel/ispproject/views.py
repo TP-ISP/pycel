@@ -2,16 +2,14 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .models import Project
 from django.urls import reverse
-from django.views import  generic
+from django.views.generic import  TemplateView, ListView, DetailView
 
 
 
-class IndexView(generic.ListView):
+class IndexView(ListView):
+    model = Project
     template_name = 'ispproject/index.html'
-    context_object_name = 'latest_question_list'
 
-    def get_queryset(self):
-        return Project.objects.order_by('-pub_date')[:5]
 
 # class DetailView(generic.DetailView):
 #     model = Question
@@ -35,5 +33,26 @@ class IndexView(generic.ListView):
 #         selected_choice.save()
 #         return HttpResponseRedirect(reverse('exam:results', args=(question.id,)))
 
-class SelectView(generic.TemplateView):
+class SelectView(ListView):
+    model = Project
     template_name = 'ispproject/select.html'
+
+
+class ProjectDetailView(DetailView):
+    model = Project
+    template_name = 'ispproject/detail.html'
+    context_object_name = "project"
+    pk_url_kwarg = 'project_id'
+
+    def get_object(self, queryset=None):
+        obj = super(ProjectDetailView, self).get_object()
+        return obj
+
+
+
+def selector(request):
+    class_level = request.GET.get('class_level')
+    leader_name = request.GET.get('leader_name')
+    rd_name = request.GET.get('rd_name')
+    pm_name = request.GET.get('pm_name')
+

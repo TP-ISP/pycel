@@ -1,51 +1,192 @@
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'ispproject/bootstrap.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'ispproject/bootstrap.min.css' %}"/>
+<script src="{% static 'ispproject/jquery.min.js' %}"></script>
 
 
-    <nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">ISP Project</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="/select">项目选择器</a></li>
-        <li><a href="/">回到首页</a></li>
-      </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/ispproject">ISP Project</a>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/document">开发文档</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/ispproject/select">项目选择器</a></li>
+                <li><a href="/">回到首页</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/document">开发文档</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
 </nav>
 
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
+        <div class="col-lg-1">
+
+        </div>
+        <div class="col-lg-2">
+            <h2>Selector</h2>
+            <div class="panel panel-default">
+                <div class="panel-heading">Leader Name</div>
+                <div class="panel-body">
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="leader-wen"> 温震宇
+                        </label>
+
+                        <label>
+                            <input type="checkbox" id="leader-zhong"> 钟联波
+                        </label>
+
+                        <label>
+                            <input type="checkbox" id="leader-cai"> 蔡及第
+                        </label>
+
+                        <label>
+                            <input type="checkbox" id="leader-li"> 李伟
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Class Level</div>
+                <div class="panel-body">
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="class-usual"> 一般
+                        </label>
+
+                        <label>
+                            <input type="checkbox" id="class-urgent"> 紧急
+                        </label>
+
+                        <label>
+                            <input type="checkbox" id="class-emergency"> 非常紧急
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Status Level</div>
+                <div class="panel-body">
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="status-normal"> 正常（Normal）
+                        </label>
+
+                        <label>
+                            <input type="checkbox" id="status-abnormal"> 异常（Abnormal）
+                        </label>
+
+                        <label>
+                            <input type="checkbox" id="status-suspend"> 暂停（Suspend）
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-primary" id="checkbox-reset">重置</button>
+            <button type="button" class="btn btn-danger" id="checkbox-apply">应用</button>
+
+        </div>
+
+        <script>
+    $('#checkbox-reset').click(function(){
+        $('input:checkbox').attr('checked', false);
+        $('tr[type="data"]').hide();
+    });
+
+    // $("input[type='checkbox']").change(function() {
+    //     alert($(event.target).attr("id")+$(event.target).is("checked"));
+    // });
+
+    $("#leader-wen").change(function() {
+      if ($("#leader-wen").is(":checked")){
+        $("tr[leader='WenZhenYu']").show();
+      }else {
+        $("tr[leader='WenZhenYu']").hide();
+      }
+    });
+
+    // $("#checkbox-apply").click(function(){
+    //     $("input[type='checkbox']:checkbox").each(function(){
+    //     if (true == $(this).attr("checked")) {
+    //         ids += $(this).attr('value')+',';
+    //         }
+    //     });
+    // });
+
+        </script>
+        <div class="col-lg-8">
+            <h2>Project</h2>
+
+            <table class="table table-striped">
+
+                <thead>
+                <tr>
+                    <td>Serial Number</td>
+                    <td>Class Level</td>
+                    <td>Status Level</td>
+                    <td>Stage Level</td>
+                    <td>Product Version</td>
+                    <td>Leader Name</td>
+                    <td>Guest Name</td>
+                    <td>Research Engineer</td>
+                    <td>Product Manager</td>
+                    <td>Go To</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for project in object_list %}
+                <tr serial="{{project.serial_number}}" leader="{{ project.leader_name}}" rd="{{ project.rd_name}}"
+                    pm="{{ project.pm_name}}" type="data">
+                    <td>{{ project.serial_number}}</td>
+                    <td>{{ project.class_level}}</td>
+                    <td>{{ project.status_level}}</td>
+                    <td>{{ project.stage_level}}</td>
+                    <td>{{ project.product_version}}</td>
+                    <td>{{ project.leader_name}}</td>
+                    <td>{{ project.guest_name}}</td>
+                    <td>{{ project.rd_name}}</td>
+                    <td>{{ project.pm_name}}</td>
+                    <td><a href="/ispproject/detail/{{project.serial_number}}/">Go To</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-  <div class="container">
-    <div class="row">
-        <h4 style="text-align:center">@All rights reserved by TP-LINK ServiceProvider Bussiness Department.</h4>
-    </div>
+    <div class="container">
+        <div class="row">
+            <h4 style="text-align:center">@All rights reserved by TP-LINK ServiceProvider Bussiness Department.</h4>
+        </div>
 
-  </div>
+    </div>
 </nav>
